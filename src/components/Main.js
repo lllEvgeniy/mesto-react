@@ -1,9 +1,7 @@
 
 import React from 'react';
 import api from "../utils/Api";
-
 import Card from './Card'
-
 
 function Main(props) {
     const [userName, setUserName] = React.useState();
@@ -51,8 +49,6 @@ function Main(props) {
 
             </section>
             <Card card={cards} onCardClick={props.onCardClick} />
-
-
         </main>
     );
 }

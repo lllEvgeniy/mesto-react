@@ -1,8 +1,6 @@
 import elementTrash from '../img/Trash.svg';
 
 function Card(props) {
-
-
     return (
         <section className="elements">
             {props.card.map((card, i) => (
