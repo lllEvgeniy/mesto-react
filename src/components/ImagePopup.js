@@ -1,6 +1,5 @@
 function ImagePopup(props) {
-
-  const className = `popup popup_type_image ${props.card ? 'popup_active' : ''}`
+  const className = `popup popup_type_image ${props.card._id && 'popup_active'}`
 
   return (
     <div className={className}>

@@ -1,10 +1,11 @@
 import elementTrash from '../img/Trash.svg';
 
 function Card(props) {
+
     return (
         <section className="elements">
-            {props.card.map((card, i) => (
-                <article key={i} className="element">
+            {props.card.map((card) => (
+                <article key={card._id} className="element">
                     <img className="element__trash" src={elementTrash} alt="кнопка для удаления картинки" />
                     <img onClick={function handleClick() {
                         props.onCardClick(card);
