@@ -1,53 +1,54 @@
 
-import {useEffect, useState} from 'react';
-import api from "../utils/Api";
+import { useContext } from 'react';
 import Card from './Card'
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
+
 
 function Main(props) {
 
+    const currentUser = useContext(CurrentUserContext);
 
-    const [userName, setUserName] = useState('');
-    const [userDescription, setUserDescription] = useState('');
-    const [userAvatar, setUserAvatar] = useState('');
-    const [cards, setCards] = useState([]);
+    // function handleCardLike(card) {
+    //     // Снова проверяем, есть ли уже лайк на этой карточке
+    //     const isLiked = card.likes.some(i => i._id === currentUser._id);
 
-    useEffect(() => {
-        Promise.all([
-            api.getInfo('users', '/me'),
-            api.getInfo('cards', ''),
-        ])
-            .then(([dataUser, dataCards]) => {
-                setUserName(dataUser.name)
-                setUserDescription(dataUser.about)
-                setUserAvatar(dataUser.avatar)
-                setCards(dataCards)
+    //     // Отправляем запрос в API и получаем обновлённые данные карточки
+    //     api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
+    //         setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+    //     });
+    // }
 
-            })
-            .catch((errorMessage) => {
-                console.log(errorMessage);
-            });
-    }, []);
+    // function handleCardLike(card) {
+    //     // Снова проверяем, есть ли уже лайк на этой карточке
+    //     const isLiked = card.likes.some(i => i._id === currentUser._id);
+
+    //     // Отправляем запрос в API и получаем обновлённые данные карточки
+    //     api.addLike(card._id, !isLiked)
+    //     .then((newCard) => {
+    //         setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+    //     });
+    // }
 
     return (
         <main className="content">
             <section className="profile">
                 <div className="profile__wrapper">
-                    <img src={userAvatar} alt="Фото профиля" className="profile__avatar" />
+                    <img src={currentUser.avatar} alt="Фото профиля" className="profile__avatar" />
                     <div onClick={props.onEditAvatar} className="profile__pic"></div>
                     <div className="profile__info">
                         <div className="profile__title">
-                            <h1 className="profile__name">{userName}</h1>
+                            <h1 className="profile__name">{currentUser.name}</h1>
                             <button onClick={props.onEditProfile} type="button" className="profile__edit-button">
                             </button>
                         </div>
-                        <p className="profile__occupation">{userDescription}</p>
+                        <p className="profile__occupation">{currentUser.about}</p>
                     </div>
                 </div>
                 <button onClick={props.onAddPlace} type="button" className="profile__add-button">
                 </button>
 
             </section>
-            <Card card={cards} onCardClick={props.onCardClick} />
+            <Card onCardDelete={props.onCardDelete} onCardLike={props.onCardLike} onCardClick={props.onCardClick} />
         </main>
     );
 }
