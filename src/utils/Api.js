@@ -63,25 +63,15 @@ class Api {
             .then(this._getJsonOrError)
     }
 
-    addLike(id) {
+    changeLike(id, status) {
 
         return fetch(`${this._host}/v1/cohort-47/cards/${id}/likes`, {
-            method: 'PUT',
+            method: status ? 'PUT' : 'DELETE',
             headers: this._getHeaders(),
         })
             .then(this._getJsonOrError)
 
     }
-
-    delLike(id) {
-        return fetch(`${this._host}/v1/cohort-47/cards/${id}/likes`, {
-            method: 'DELETE',
-            headers: this._getHeaders(),
-        })
-            .then(this._getJsonOrError)
-
-    }
-
 
     editAvatar(avatar) {
         return fetch(`${this._host}/v1/cohort-47/users/me/avatar`, {

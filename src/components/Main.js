@@ -6,29 +6,7 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function Main(props) {
 
-    const currentUser = useContext(CurrentUserContext);
-
-    // function handleCardLike(card) {
-    //     // Снова проверяем, есть ли уже лайк на этой карточке
-    //     const isLiked = card.likes.some(i => i._id === currentUser._id);
-
-    //     // Отправляем запрос в API и получаем обновлённые данные карточки
-    //     api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
-    //         setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-    //     });
-    // }
-
-    // function handleCardLike(card) {
-    //     // Снова проверяем, есть ли уже лайк на этой карточке
-    //     const isLiked = card.likes.some(i => i._id === currentUser._id);
-
-    //     // Отправляем запрос в API и получаем обновлённые данные карточки
-    //     api.addLike(card._id, !isLiked)
-    //     .then((newCard) => {
-    //         setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
-    //     });
-    // }
-
+    const currentUser = useContext(CurrentUserContext)
     return (
         <main className="content">
             <section className="profile">
