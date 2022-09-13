@@ -106,6 +106,9 @@ function App() {
         state.filter(function (el) {
           return el._id !== card._id;
         })
+        .catch((errorMessage) => {
+          console.log(errorMessage);
+        })
       );
     });
   }
